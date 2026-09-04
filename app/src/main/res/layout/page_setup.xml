@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView style="@style/Title" android:text="Developer setup" />
+    <TextView style="@style/Body" android:text="Use the Storage route found on the TC t88. Keep the steps on screen until you are ready." />
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="1  Open Storage and tap eight times" />
+        <TextView style="@style/Body" android:text="Tap the large used-storage number or its title eight times. If a password screen opens, press Back. On the tested firmware, developer mode is enabled before that screen appears; no password was needed." />
+        <Button android:id="@+id/open_storage" style="@style/Action" android:text="Open Android Storage" />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="2  Check Developer Options" />
+        <TextView android:id="@+id/developer_state" style="@style/Body" />
+        <Button android:id="@+id/open_developer" style="@style/Action" android:text="Open Developer Options" />
+        <TextView style="@style/Body" android:layout_marginTop="12dp" android:text="USB debugging is needed only for the PC fallback. Enable it there, connect a data-capable USB cable, and approve your computer on the RC29." />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="Other Android settings" />
+        <Button android:id="@+id/open_settings" style="@style/Secondary" android:text="Android Settings" />
+        <Button android:id="@+id/open_wifi" style="@style/Secondary" android:text="Wi-Fi settings" />
+        <Button android:id="@+id/open_about" style="@style/Secondary" android:text="About this device" />
+    </LinearLayout>
+</LinearLayout>

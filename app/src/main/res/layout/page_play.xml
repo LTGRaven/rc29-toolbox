@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView style="@style/Title" android:text="Google Play, within reach" />
+    <TextView style="@style/Body" android:text="The stock home screen hides Google Play on the tested RC29 firmware." />
+    <LinearLayout style="@style/Card">
+        <TextView android:id="@+id/play_state" style="@style/CardTitle" />
+        <TextView style="@style/Body" android:text="This opens the Play Store already on your device. Toolbox does not install Google services or sign you in." />
+        <Button android:id="@+id/open_play" style="@style/Action" android:text="Open Google Play" />
+        <Button android:id="@+id/toggle_shortcut" style="@style/Secondary" android:text="Add Play Store to the home screen" />
+        <TextView android:id="@+id/shortcut_state" style="@style/Body" android:layout_marginTop="8dp" />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="An app still will not install?" />
+        <TextView style="@style/Body" android:text="Open App installs and check the catalog status. If the bypass is already enabled, the failure may have another cause, such as Android version, storage, or a signature conflict." />
+        <Button android:id="@+id/play_to_catalog" style="@style/Secondary" android:text="Check app installation settings" />
+    </LinearLayout>
+</LinearLayout>

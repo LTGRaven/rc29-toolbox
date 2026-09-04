@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView style="@style/Title" android:text="Help and device report" />
+    <TextView style="@style/Body" android:text="Community beta, tested on one TC t88 running Android 10. Other firmware may need the PC fallback." />
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="PC fallback" />
+        <TextView style="@style/Body" android:text="Enable USB debugging in Developer Options and authorize your computer. On Windows, extract the complete Toolbox download and open Start-Windows.cmd. It can install Toolbox, allow all apps, or restore the catalog." />
+        <Button android:id="@+id/show_commands" style="@style/Secondary" android:text="Show manual PC commands" />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="Share useful details" />
+        <TextView style="@style/Body" android:text="Preview your report before sharing it. It includes model, build, Android version, and setup status. It excludes serial numbers, account names, network names, and logs." />
+        <Button android:id="@+id/view_report" style="@style/Action" android:text="Preview device report" />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="About this beta" />
+        <TextView android:id="@+id/about_toolbox" style="@style/Body" />
+        <Button android:id="@+id/toolbox_settings" style="@style/Secondary" android:text="Toolbox app settings" />
+    </LinearLayout>
+</LinearLayout>

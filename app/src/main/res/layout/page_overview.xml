@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView style="@style/Title" android:text="Make your RC29 yours" />
+    <TextView style="@style/Body" android:text="Open Android settings, manage app installation, and reach Google Play." />
+    <LinearLayout style="@style/Card">
+        <TextView android:id="@+id/device_match" style="@style/CardTitle" />
+        <TextView android:id="@+id/status_summary" style="@style/Body" android:textIsSelectable="true" />
+        <Button android:id="@+id/refresh_status" style="@style/Secondary" android:text="Refresh status" />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="Start here" />
+        <TextView style="@style/Body" android:text="New to this? Follow Developer setup first. If apps already install, go straight to Play Store." />
+        <Button android:id="@+id/start_setup" style="@style/Action" android:text="Open the setup guide" />
+        <TextView android:id="@+id/starter_notice" style="@style/Body" android:layout_marginTop="12dp" android:visibility="gone" android:text="Starter edition: this helper uses the com.sirius package entry to get past the initial catalog lock. It is not SiriusXM. After setup, install the standard RC29 Toolbox APK and remove this starter." />
+    </LinearLayout>
+</LinearLayout>

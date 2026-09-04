@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView style="@style/Title" android:text="Choose which apps can install" />
+    <TextView style="@style/Body" android:text="The RC29 catalog can reject an app even when Google Play downloads it successfully." />
+    <LinearLayout style="@style/Card">
+        <TextView android:id="@+id/catalog_state" style="@style/CardTitle" />
+        <TextView style="@style/Body" android:text="Allowing all apps skips this catalog check for Google Play and sideloaded APKs. Android compatibility and signature checks still apply." />
+        <Button android:id="@+id/allow_all" style="@style/Action" android:text="Allow all app installs" />
+        <Button android:id="@+id/restore_catalog" style="@style/Secondary" android:text="Restore catalog restriction" />
+        <TextView android:id="@+id/catalog_result" style="@style/Body" android:layout_marginTop="8dp" android:visibility="gone" android:accessibilityLiveRegion="polite" />
+    </LinearLayout>
+    <LinearLayout style="@style/Card">
+        <TextView style="@style/CardTitle" android:text="Approve one app instead" />
+        <TextView style="@style/Body" android:text="This optional route requires an authorized PC. Keep the catalog restriction active and approve specific packages with the Windows helper. Enter a package name, such as com.block.juggle, to see its manual command." />
+        <EditText android:id="@+id/package_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:hint="com.example.app" android:inputType="textVisiblePassword" android:singleLine="true" android:textColor="@color/text" android:textColorHint="@color/muted" android:importantForAutofill="no" />
+        <Button android:id="@+id/approve_package" style="@style/Secondary" android:text="Show approval PC command" />
+    </LinearLayout>
+</LinearLayout>

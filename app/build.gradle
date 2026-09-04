@@ -1,0 +1,49 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.rc29.toolbox'
+    compileSdk 35
+    defaultConfig {
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0-beta'
+    }
+    buildFeatures { buildConfig true }
+    flavorDimensions += 'edition'
+    productFlavors {
+        standard {
+            dimension 'edition'
+            applicationId 'com.rc29.toolbox'
+            resValue 'string', 'app_name', 'RC29 Toolbox'
+            buildConfigField 'boolean', 'STARTER', 'false'
+        }
+        starter {
+            dimension 'edition'
+            applicationId 'com.sirius'
+            resValue 'string', 'app_name', 'RC29 Toolbox Starter'
+            buildConfigField 'boolean', 'STARTER', 'true'
+        }
+    }
+    signingConfigs {
+        release {
+            if (System.getenv('RC29_SIGNING_STORE')) {
+                storeFile file(System.getenv('RC29_SIGNING_STORE'))
+                storePassword System.getenv('RC29_SIGNING_PASSWORD')
+                keyAlias 'rc29-toolbox'
+                keyPassword System.getenv('RC29_SIGNING_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            if (System.getenv('RC29_SIGNING_STORE')) signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

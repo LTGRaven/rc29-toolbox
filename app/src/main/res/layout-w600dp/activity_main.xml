@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="horizontal" android:background="@color/background">
+    <ScrollView android:layout_width="212dp" android:layout_height="match_parent" android:background="#101D2B" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="18dp" android:orientation="vertical">
+            <ImageView android:layout_width="42dp" android:layout_height="42dp" android:src="@drawable/ic_toolbox" android:importantForAccessibility="no" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="RC29 Toolbox" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/accent" android:paddingTop="8dp" android:paddingBottom="16dp" />
+            <Button android:id="@+id/nav_overview" style="@style/Nav" android:layout_width="match_parent" android:text="Overview" />
+            <Button android:id="@+id/nav_setup" style="@style/Nav" android:layout_width="match_parent" android:text="Developer setup" />
+            <Button android:id="@+id/nav_catalog" style="@style/Nav" android:layout_width="match_parent" android:text="App installs" />
+            <Button android:id="@+id/nav_play" style="@style/Nav" android:layout_width="match_parent" android:text="Play Store" />
+            <Button android:id="@+id/nav_help" style="@style/Nav" android:layout_width="match_parent" android:text="Help &amp; report" />
+            <TextView style="@style/Body" android:text="Community beta · 0.1.0" android:textSize="12sp" android:paddingTop="12dp" />
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical">
+        <ProgressBar android:id="@+id/busy" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="3dp" android:indeterminate="true" android:visibility="invisible" />
+        <ScrollView android:id="@+id/content_scroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+            <FrameLayout android:id="@+id/page" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="24dp" />
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
