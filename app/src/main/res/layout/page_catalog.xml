@@ -3,7 +3,7 @@
     <TextView style="@style/Body" android:text="The RC29 catalog can reject an app even when Google Play downloads it successfully." />
     <LinearLayout style="@style/Card">
         <TextView android:id="@+id/catalog_state" style="@style/CardTitle" />
-        <TextView style="@style/Body" android:text="Allowing all apps skips this catalog check for Google Play and sideloaded APKs. Android compatibility and signature checks still apply." />
+        <TextView style="@style/Body" android:text="Allowing all apps requests the firmware's master bypass for Google Play and sideloaded APKs. Some earlier firmware still requires a package-by-package approval from the Windows helper. Android compatibility and signature checks still apply." />
         <Button android:id="@+id/allow_all" style="@style/Action" android:text="Allow all app installs" />
         <Button android:id="@+id/restore_catalog" style="@style/Secondary" android:text="Restore catalog restriction" />
         <TextView android:id="@+id/catalog_result" style="@style/Body" android:layout_marginTop="8dp" android:visibility="gone" android:accessibilityLiveRegion="polite" />

@@ -1,4 +1,4 @@
-# RC29 Toolbox 0.1.0 beta — verification
+# RC29 Toolbox 0.1.1 beta — verification
 
 Test date: 4 September 2026. One physical LAMTTO RC29 / TC t88 was used. This is not a certification of other units or firmware.
 
@@ -14,7 +14,7 @@ Test date: 4 September 2026. One physical LAMTTO RC29 / TC t88 was used. This is
 ## Verified
 
 - Both standard and starter release variants built successfully with Gradle 8.11.1, Android Gradle Plugin 8.9.2, JDK 21 and SDK 35.
-- Both final APK signatures passed Android `apksigner` verification with minimum API 21. Package metadata confirms minSdk 21, targetSdk 35, version code 1, and version name `0.1.0-beta`.
+- Both final APK signatures passed Android `apksigner` verification with minimum API 21. Package metadata confirms minSdk 21, targetSdk 35, version code 2, and version name `0.1.1-beta`.
 - Final APKs contain no requested Android permissions or native libraries and are not debuggable. There are no third-party runtime dependencies.
 - The standard edition installed and ran as an ordinary application user, without root or privileged settings permissions.
 - The app's **Restore catalog restriction** button set the vendor property to `0`. A fresh, unapproved test APK was then rejected with `INSTALL_FAILED_INVALID_APK` / `Invalid package!`.
@@ -26,6 +26,7 @@ Test date: 4 September 2026. One physical LAMTTO RC29 / TC t88 was used. This is
 - Package-name validation checks passed, including rejection of malformed names, newlines and shell-like input. Catalog-value parsing checks passed.
 - The final individual-approval screen displayed the expected read/approve/undo PC commands for `com.block.juggle` without requesting permission or changing an approval.
 - The Windows helper parsed successfully, reported device status under Windows PowerShell 5 using the supplied launcher's process-local execution-policy option, and installed/opened the final standard APK successfully.
+- The 0.1.1 helper was updated after a report from firmware `T88-MIPI91-USER-20260331174849`. It now grants and verifies the standard package's individual approval before every installation attempt, including when the master bypass property already reads as enabled. This compatibility path has not yet been tested on that reporting device.
 
 The app-level individual-approval experiment was rejected by this firmware even after Modify system settings permission was granted. The shipped app therefore offers that operation through PC instructions only and declares no settings permission. The temporary test permission was reset and no test approval was created.
 

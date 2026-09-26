@@ -252,7 +252,9 @@ public final class MainActivity extends Activity {
                         DeviceCommands.Result read = DeviceCommands.readCatalog();
                         if (!written.ok() || !read.ok() || !expected.equals(read.output))
                             throw new IllegalStateException("The firmware did not confirm the change. " + written.output);
-                        return allow ? "Verified: catalog bypass is enabled." : "Verified: catalog restriction is restored.";
+                        return allow
+                                ? "The bypass property is enabled. Retry the install. If this firmware still blocks it, use the Windows helper to approve that package."
+                                : "Verified: catalog restriction is restored.";
                     }, "adb shell setprop " + DeviceCommands.CATALOG_PROPERTY + " " + expected);
                 }).show();
     }

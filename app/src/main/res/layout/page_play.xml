@@ -10,7 +10,7 @@
     </LinearLayout>
     <LinearLayout style="@style/Card">
         <TextView style="@style/CardTitle" android:text="An app still will not install?" />
-        <TextView style="@style/Body" android:text="Open App installs and check the catalog status. If the bypass is already enabled, the failure may have another cause, such as Android version, storage, or a signature conflict." />
+        <TextView style="@style/Body" android:text="Open App installs and check the catalog status. Some earlier firmware reports the bypass as enabled but still requires package-by-package approval from the Windows helper. Android version, storage, or a signature conflict can also block an install." />
         <Button android:id="@+id/play_to_catalog" style="@style/Secondary" android:text="Check app installation settings" />
     </LinearLayout>
 </LinearLayout>

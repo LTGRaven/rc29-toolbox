@@ -1,4 +1,4 @@
-# RC29 Toolbox 0.1.0 beta
+# RC29 Toolbox 0.1.1 beta
 
 A small community Android app for LAMTTO RC29 / TC t88 owners. It brings the hidden Settings route, catalog controls, Google Play access, and a shareable device report into one interface. Java + XML; no third-party runtime dependencies, native libraries, ads, analytics, internet permission, root commands, or background services.
 
@@ -8,7 +8,7 @@ This is a community beta, not an official LAMTTO, Google, or SiriusXM product. T
 
 ## Download
 
-[Download the complete RC29 Toolbox beta ZIP](https://github.com/LTGRaven/rc29-toolbox/releases/download/v0.1.0-beta/RC29-Toolbox-0.1.0-beta.zip). Extract it before copying APKs onto a microSD card or USB drive. The release includes the standard APK, optional Starter APK, Windows helper, source archive, instructions, and test results. [View all release files](https://github.com/LTGRaven/rc29-toolbox/releases/tag/v0.1.0-beta).
+[Download the complete RC29 Toolbox beta ZIP](https://github.com/LTGRaven/rc29-toolbox/releases/download/v0.1.1-beta/RC29-Toolbox-0.1.1-beta.zip). Extract it before copying APKs onto a microSD card or USB drive. The release includes the standard APK, optional Starter APK, Windows helper, source archive, instructions, and test results. [View all release files](https://github.com/LTGRaven/rc29-toolbox/releases/tag/v0.1.1-beta).
 
 The standard APK was installed and tested on the reference RC29. The newly signed Starter APK still needs confirmation on another catalog-locked unit. Read the edition and setup instructions below before installing.
 
@@ -25,7 +25,7 @@ The starter's initial-install route depends on that package being preapproved on
 1. Copy the APK to a USB drive or SD card accessible to the RC29 and open it with Package Installer. Use the standard edition first if apps already install; use the optional starter if you are still catalog-locked and do not have a conflicting `com.sirius` installation.
 2. Open Toolbox. The Overview reports your model and current setup status.
 3. To enable Developer Options, open **Developer setup → Open Android Storage**. Tap the large used-storage number/title **eight times**. If a vendor password screen opens, press Back; on the tested firmware the developer flag is enabled before that screen opens. No password was needed.
-4. In **App installs**, choose **Allow all app installs** and review the confirmation. Toolbox invokes the existing firmware property command as its own ordinary app user, then checks the result. This covers Google Play and sideloaded APKs.
+4. In **App installs**, choose **Allow all app installs** and review the confirmation. Toolbox invokes the existing firmware property command as its own ordinary app user, then checks the result. On the tested July firmware this covers Google Play and sideloaded APKs. Some earlier firmware still requires individual package approvals from the Windows helper.
 5. In **Play Store**, open the already-installed store. The standard edition can add its own Play Store home-screen entry. Toolbox does not download Google Play, install Google services, create an account, or sign you in.
 6. If you started with the starter, install the standard APK after enabling the bypass, open it, and remove the starter when no longer needed. They have separate package names. Add the Play Store shortcut from the standard edition so it remains when the starter is removed.
 
@@ -37,6 +37,8 @@ On the tested firmware direct catalog changes may work without enabling USB debu
 2. Extract the entire release ZIP into a folder. Download Google's [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) if needed. Put the extracted `platform-tools` folder beside `Start-Windows.cmd`. The helper can also find Android Studio's default SDK installation or `adb.exe` on PATH.
 3. Open **Start-Windows.cmd** and choose **Install/open standard Toolbox**. If needed, this grants an individual catalog exception to Toolbox only. It does not silently enable the master bypass.
 4. Choose **Allow all app installs** in the app, or option 2 in the Windows helper. Option 3 restores the catalog restriction.
+
+On some earlier T88 firmware, including reports from `T88-MIPI91-USER-20260331174849`, the master bypass property can read as enabled while Package Installer and Google Play remain restricted. The updated Windows helper therefore grants the standard Toolbox package its own approval before every installation attempt. After Toolbox is installed, use option 4 to approve other package IDs individually when the master bypass is not honored.
 
 With several Android devices connected, the helper asks which one to use. It shows the device model and asks before changing an unverified model. Administrator privileges are not required. The launcher uses a process-local PowerShell execution-policy setting; it does not change Windows' saved execution policy.
 
@@ -55,7 +57,7 @@ The final command should return `1`. Use `adb -s SERIAL` if several devices are 
 
 Individual approvals require an authorized PC on the tested firmware. Use option 4 in the Windows helper, or enter a package name in Toolbox to display the matching manual command. Merely displaying a command makes no change.
 
-The Windows helper displays the previous value before changing it. Save that value if you want to undo the approval. If it was `null`, use the displayed delete command; otherwise restore the saved value. An approval is for the package identity; it does not authenticate the developer or download/install that app.
+The Windows helper displays the previous value before changing it. Save that value if you want to undo the approval. If it was `null`, use the displayed delete command; otherwise restore the saved value. An approval is for the package identity; it does not authenticate the developer or download/install that app. The standard Toolbox installer also preserves its own package approval after a successful installation so firmware that ignores the master bypass does not immediately block updates.
 
 ## What the catalog control changes
 

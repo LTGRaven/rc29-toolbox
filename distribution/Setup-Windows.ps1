@@ -94,9 +94,10 @@ function Install-Toolbox {
     $apk=Join-Path $PSScriptRoot 'RC29-Toolbox.apk'
     if(!(Test-Path -LiteralPath $apk -PathType Leaf)) {throw 'RC29-Toolbox.apk is missing. Extract the whole download into one folder.'}
     $old=Read-Device -Command @('shell','settings','--user',$script:currentUser,'get','system',$toolboxPackage)
-    $master=Read-Device -Command @('shell','getprop',$catalogProperty)
     $changed=$false
-    if($master -notin @('1','true','y','yes','on') -and $old -in @('null','0')) {
+    # Some earlier T88 firmware accepts the master property but still applies
+    # its per-package allowlist. Always approve Toolbox itself before install.
+    if($old -ne '1') {
         Invoke-Device -Command @('shell','settings','--user',$script:currentUser,'put','system',$toolboxPackage,'1') | Out-Null
         $changed=$true
         if((Read-Device -Command @('shell','settings','--user',$script:currentUser,'get','system',$toolboxPackage)) -ne '1') {throw 'Could not approve Toolbox for installation.'}
@@ -111,7 +112,7 @@ function Install-Toolbox {
         throw
     }
     Invoke-Device -Command @('shell','am','start','-n','com.rc29.toolbox/com.rc29.toolbox.MainActivity') | Out-Null
-    Write-Host 'Toolbox is installed and opened. Use App installs in the app, or option 2 here, to enable the master bypass.'
+    Write-Host 'Toolbox is installed and opened. Its individual approval was preserved. Use App installs in the app, or option 2 here, to try the master bypass.'
 }
 function Approve-Package {
     Require-Model
