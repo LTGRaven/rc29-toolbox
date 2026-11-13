@@ -8,8 +8,8 @@
     </LinearLayout>
     <LinearLayout style="@style/Card">
         <TextView style="@style/CardTitle" android:text="Start here" />
-        <TextView style="@style/Body" android:text="New to this? Follow Developer setup first. If apps already install, go straight to Play Store." />
+        <TextView style="@style/Body" android:text="If apps are blocked, begin in App installs. Developer setup is available when you need the PC fallback." />
         <Button android:id="@+id/start_setup" style="@style/Action" android:text="Open the setup guide" />
-        <TextView android:id="@+id/starter_notice" style="@style/Body" android:layout_marginTop="12dp" android:visibility="gone" android:text="Starter edition: this helper uses the com.sirius package entry to get past the initial catalog lock. It is not SiriusXM. After setup, install the standard RC29 Toolbox APK and remove this starter." />
+        <TextView android:id="@+id/starter_notice" style="@style/Body" android:layout_marginTop="12dp" android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

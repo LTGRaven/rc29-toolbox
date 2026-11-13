@@ -1,6 +1,6 @@
-# RC29 Toolbox 0.1.1 beta — verification
+# RC29 Toolbox 0.1.2 beta — verification
 
-Test date: 4 September 2026. One physical LAMTTO RC29 / TC t88 was used. This is not a certification of other units or firmware.
+Physical test date: 4 September 2026. Bootstrap build/inspection update: 13 November 2026. One physical LAMTTO RC29 / TC t88 was used. This is not a certification of other units or firmware.
 
 ## Reference device
 
@@ -13,8 +13,8 @@ Test date: 4 September 2026. One physical LAMTTO RC29 / TC t88 was used. This is
 
 ## Verified
 
-- Both standard and starter release variants built successfully with Gradle 8.11.1, Android Gradle Plugin 8.9.2, JDK 21 and SDK 35.
-- Both final APK signatures passed Android `apksigner` verification with minimum API 21. Package metadata confirms minSdk 21, targetSdk 35, version code 2, and version name `0.1.1-beta`.
+- Standard, Bootstrap, and legacy Starter release variants built successfully with Gradle 8.11.1, Android Gradle Plugin 8.9.2, JDK 21 and SDK 35.
+- All final APK signatures passed Android `apksigner` verification with minimum API 21. Package metadata confirms minSdk 21, targetSdk 35, version code 3, and version name `0.1.2-beta`.
 - Final APKs contain no requested Android permissions or native libraries and are not debuggable. There are no third-party runtime dependencies.
 - The standard edition installed and ran as an ordinary application user, without root or privileged settings permissions.
 - The app's **Restore catalog restriction** button set the vendor property to `0`. A fresh, unapproved test APK was then rejected with `INSTALL_FAILED_INVALID_APK` / `Invalid package!`.
@@ -27,12 +27,14 @@ Test date: 4 September 2026. One physical LAMTTO RC29 / TC t88 was used. This is
 - The final individual-approval screen displayed the expected read/approve/undo PC commands for `com.block.juggle` without requesting permission or changing an approval.
 - The Windows helper parsed successfully, reported device status under Windows PowerShell 5 using the supplied launcher's process-local execution-policy option, and installed/opened the final standard APK successfully.
 - The 0.1.1 helper was updated after a report from firmware `T88-MIPI91-USER-20260331174849`. It now grants and verifies the standard package's individual approval before every installation attempt, including when the master bypass property already reads as enabled. This compatibility path has not yet been tested on that reporting device.
+- The inspected July `services.jar` hardcodes `com.github.metacubex.clash.meta` as an installer exception before checking the global property or per-package setting. The 0.1.2 Bootstrap uses that application ID and contains the same Toolbox code as the other editions.
 
 The app-level individual-approval experiment was rejected by this firmware even after Modify system settings permission was granted. The shipped app therefore offers that operation through PC instructions only and declares no settings permission. The temporary test permission was reset and no test approval was created.
 
 ## Limits of this beta
 
-- The newly signed starter APK was built and its signature checked, but its first installation on a factory/catalog-locked device has not been retested. An older, differently signed diagnostic helper already occupies `com.sirius` on the test unit and was deliberately preserved. The starter route is based on that package identity having worked for the earlier helper; other firmware may differ.
+- The new Bootstrap APK was built and its signature checked, but its first installation on another factory/catalog-locked device remains to be reported. Its route is supported by the inspected firmware code rather than a physical installation on a second unit.
+- A report from another July-firmware unit confirms the legacy `com.sirius` Starter can be rejected. That package was individually approved only on the original reference unit and is retained as a fallback, not presented as universal.
 - The Storage eight-tap developer-mode route was established earlier on this device. It was not repeated by disabling developer mode during Toolbox testing.
 - The main enable/restore cycle was tested before the final removal of the unused individual-approval permission and UI. The catalog implementation was unchanged in the final build, which was installed successfully afterward.
 - No reboot, factory reset, firmware update, or test on another RC29 was performed for this release. Persistence across reboot/update is not separately confirmed.
@@ -41,7 +43,7 @@ The app-level individual-approval experiment was rejected by this firmware even 
 
 ## Release signing identity
 
-Both editions use this certificate SHA-256 fingerprint:
+All editions use this certificate SHA-256 fingerprint:
 
 ```text
 fffa0a2e0e64c8704ddba1797f43528e37d46d675a336cdfa47b6d5ef33f311e

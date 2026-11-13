@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 35
-        versionCode 2
-        versionName '0.1.1-beta'
+        versionCode 3
+        versionName '0.1.2-beta'
     }
     buildFeatures { buildConfig true }
     flavorDimensions += 'edition'
@@ -17,12 +17,21 @@ android {
             applicationId 'com.rc29.toolbox'
             resValue 'string', 'app_name', 'RC29 Toolbox'
             buildConfigField 'boolean', 'STARTER', 'false'
+            buildConfigField 'boolean', 'BOOTSTRAP', 'false'
         }
         starter {
             dimension 'edition'
             applicationId 'com.sirius'
             resValue 'string', 'app_name', 'RC29 Toolbox Starter'
             buildConfigField 'boolean', 'STARTER', 'true'
+            buildConfigField 'boolean', 'BOOTSTRAP', 'false'
+        }
+        bootstrap {
+            dimension 'edition'
+            applicationId 'com.github.metacubex.clash.meta'
+            resValue 'string', 'app_name', 'RC29 Toolbox Bootstrap'
+            buildConfigField 'boolean', 'STARTER', 'true'
+            buildConfigField 'boolean', 'BOOTSTRAP', 'true'
         }
     }
     signingConfigs {

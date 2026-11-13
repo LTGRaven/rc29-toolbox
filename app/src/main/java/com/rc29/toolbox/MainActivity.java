@@ -111,7 +111,12 @@ public final class MainActivity extends Activity {
         on(R.id.refresh_status, view -> refresh());
         on(R.id.start_setup, view -> showPage(1));
         View starter = findViewById(R.id.starter_notice);
-        if (starter != null) starter.setVisibility(BuildConfig.STARTER ? View.VISIBLE : View.GONE);
+        if (starter != null) {
+            starter.setVisibility(BuildConfig.STARTER ? View.VISIBLE : View.GONE);
+            if (BuildConfig.STARTER) setText(R.id.starter_notice, BuildConfig.BOOTSTRAP
+                    ? "Bootstrap edition: this temporary helper uses a package identity that this firmware hardcodes as installable. It contains no Clash Meta code or signature. Enable app installs, install the standard RC29 Toolbox APK, then remove this Bootstrap."
+                    : "Starter edition: this temporary helper uses a com.sirius approval that exists on some units. It contains no SiriusXM code or signature. Enable app installs, install the standard RC29 Toolbox APK, then remove this Starter.");
+        }
         on(R.id.open_storage, view -> openStorage());
         on(R.id.open_developer, view -> open(new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)));
         on(R.id.open_settings, view -> open(new Intent(Settings.ACTION_SETTINGS)));
@@ -128,7 +133,8 @@ public final class MainActivity extends Activity {
         on(R.id.show_commands, view -> showCommands("PC fallback", manualCommands()));
         on(R.id.view_report, view -> showReport());
         on(R.id.toolbox_settings, view -> open(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()))));
-        setText(R.id.about_toolbox, "Version " + BuildConfig.VERSION_NAME + (BuildConfig.STARTER ? " · Starter edition" : " · Standard edition")
+        setText(R.id.about_toolbox, "Version " + BuildConfig.VERSION_NAME
+                + (BuildConfig.BOOTSTRAP ? " · Bootstrap edition" : (BuildConfig.STARTER ? " · Starter edition" : " · Standard edition"))
                 + "\nNo ads, trackers, internet access, root commands, or background services. Changes happen only when you choose an action."
                 + "\n\nThe tested firmware already had SELinux in Permissive mode. Toolbox never changes this setting. Firmware with different permissions may refuse direct catalog changes."
                 + "\n\nUninstalling Toolbox does not restore the catalog. Use Restore catalog restriction first if desired.");
@@ -335,7 +341,8 @@ public final class MainActivity extends Activity {
     }
 
     private String report() {
-        String text = "RC29 Toolbox " + BuildConfig.VERSION_NAME + (BuildConfig.STARTER ? " (Starter)" : "")
+        String text = "RC29 Toolbox " + BuildConfig.VERSION_NAME
+                + (BuildConfig.BOOTSTRAP ? " (Bootstrap)" : (BuildConfig.STARTER ? " (Starter)" : ""))
                 + "\nManufacturer: " + Build.MANUFACTURER + "\nModel: " + Build.MODEL
                 + "\nAndroid: " + Build.VERSION.RELEASE + "\nAPI: " + Build.VERSION.SDK_INT
                 + "\nABIs: " + TextUtils.join(", ", Build.SUPPORTED_ABIS)

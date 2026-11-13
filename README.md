@@ -1,4 +1,4 @@
-# RC29 Toolbox 0.1.1 beta
+# RC29 Toolbox 0.1.2 beta
 
 A small community Android app for LAMTTO RC29 / TC t88 owners. It brings the hidden Settings route, catalog controls, Google Play access, and a shareable device report into one interface. Java + XML; no third-party runtime dependencies, native libraries, ads, analytics, internet permission, root commands, or background services.
 
@@ -8,28 +8,29 @@ This is a community beta, not an official LAMTTO, Google, or SiriusXM product. T
 
 ## Download
 
-[Download the complete RC29 Toolbox beta ZIP](https://github.com/LTGRaven/rc29-toolbox/releases/download/v0.1.1-beta/RC29-Toolbox-0.1.1-beta.zip). Extract it before copying APKs onto a microSD card or USB drive. The release includes the standard APK, optional Starter APK, Windows helper, source archive, instructions, and test results. [View all release files](https://github.com/LTGRaven/rc29-toolbox/releases/tag/v0.1.1-beta).
+[Download the complete RC29 Toolbox beta ZIP](https://github.com/LTGRaven/rc29-toolbox/releases/download/v0.1.2-beta/RC29-Toolbox-0.1.2-beta.zip). Extract it before copying APKs onto a microSD card or USB drive. The release includes the standard APK, temporary Bootstrap APK, optional legacy Starter APK, Windows helper, source archive, instructions, and test results. [View all release files](https://github.com/LTGRaven/rc29-toolbox/releases/tag/v0.1.2-beta).
 
-The standard APK was installed and tested on the reference RC29. The newly signed Starter APK still needs confirmation on another catalog-locked unit. Read the edition and setup instructions below before installing.
+The standard APK was installed and tested on the reference RC29. The Bootstrap package identity is a hardcoded exception in the inspected July firmware, but the new Bootstrap APK still needs confirmation on another factory-locked unit. Read the edition and setup instructions below before installing.
 
 ## Start with the right APK
 
 **RC29-Toolbox.apk** (`com.rc29.toolbox`) is the normal edition. Use it if APK installation already works or if USB debugging is already available.
 
-**RC29-Toolbox-Starter.apk** (`com.sirius`) is an optional initial helper for catalog-locked units. On the tested device this package identity was already individually approved by the vendor. The starter has Toolbox's own code, label, icon, and signing key; it contains no SiriusXM code and does not use SiriusXM's signing certificate.
+**RC29-Toolbox-Bootstrap.apk** (`com.github.metacubex.clash.meta`) is the preferred temporary helper for a catalog-locked RC29. Inspection of the July firmware found this package name in the installer's hardcoded exception list. The APK contains only Toolbox code and uses Toolbox's signing key; it contains no Clash Meta code or signature and is not an update for that app. Remove it after the standard Toolbox is installed.
 
-The starter's initial-install route depends on that package being preapproved on your firmware. It cannot update the genuine SiriusXM app or a differently signed older diagnostic helper. If Android reports a signature/version conflict, use the normal edition with the PC route; the installer does not remove existing apps or their data. Do not treat the starter as a SiriusXM update.
+**RC29-Toolbox-Starter.apk** (`com.sirius`) is the older fallback. It works only on units where that package already has an individual approval. Reports now confirm that approval is not present on every RC29, even with the same firmware label. It contains no SiriusXM code or signature and is not a SiriusXM update.
+
+Android will reject either temporary edition if a genuine or differently signed app already uses its package name. Do not uninstall an existing app or erase its data merely to make room for Toolbox; use the other route or the authorized-PC route instead.
 
 ## Route A: start on the RC29
 
-1. Copy the APK to a USB drive or SD card accessible to the RC29 and open it with Package Installer. Use the standard edition first if apps already install; use the optional starter if you are still catalog-locked and do not have a conflicting `com.sirius` installation.
-2. Open Toolbox. The Overview reports your model and current setup status.
-3. To enable Developer Options, open **Developer setup → Open Android Storage**. Tap the large used-storage number/title **eight times**. If a vendor password screen opens, press Back; on the tested firmware the developer flag is enabled before that screen opens. No password was needed.
-4. In **App installs**, choose **Allow all app installs** and review the confirmation. Toolbox invokes the existing firmware property command as its own ordinary app user, then checks the result. On the tested July firmware this covers Google Play and sideloaded APKs. Some earlier firmware still requires individual package approvals from the Windows helper.
-5. In **Play Store**, open the already-installed store. The standard edition can add its own Play Store home-screen entry. Toolbox does not download Google Play, install Google services, create an account, or sign you in.
-6. If you started with the starter, install the standard APK after enabling the bypass, open it, and remove the starter when no longer needed. They have separate package names. Add the Play Store shortcut from the standard edition so it remains when the starter is removed.
+1. If apps already install, use the standard APK. If the RC29 rejects it, copy **RC29-Toolbox-Bootstrap.apk** to a USB drive or SD card and open it with Package Installer.
+2. Open the Bootstrap, choose **App installs → Allow all app installs**, and wait for the property verification. Then retry **RC29-Toolbox.apk**.
+3. Open the standard Toolbox and remove the temporary Bootstrap. Add the Play Store shortcut from the standard edition so it remains afterward.
+4. If the Bootstrap installs but cannot change the property, open **Developer setup → Open Android Storage**. Tap the large used-storage number/title eight times without leaving the screen. If a vendor password screen opens, press Back; the tested firmware enabled Developer Options before opening that screen. Enable USB debugging and use the Windows helper below.
+5. In **Play Store**, open the already-installed store. Toolbox does not download Google Play, install Google services, create an account, or sign you in.
 
-On the tested firmware direct catalog changes may work without enabling USB debugging first. The Storage guide and USB debugging remain useful when the PC fallback is needed. Opening Toolbox alone does not change the catalog or debugging settings.
+On the tested firmware direct catalog changes worked without enabling USB debugging first. The Storage guide and USB debugging remain available for the PC fallback. Opening Toolbox alone does not change the catalog or debugging settings.
 
 ## Route B: Windows helper
 
@@ -77,7 +78,7 @@ Existing apps and individual approvals remain. **Uninstalling Toolbox does not u
 - Firmware label: `T88-MIPI91-USER-20260727172621`.
 - Fingerprint: `alps/Android/Android:10/QP1A.191105.004/826:user/dev-keys`.
 - This unit's SELinux mode was already **Permissive**. Toolbox neither changes SELinux nor requests root. A device with an enforcing or differently configured policy may deny direct property changes; use the authorized PC fallback if supported.
-- Both APKs use minSdk 21 and targetSdk 35. Supporting an Android API level does not establish firmware compatibility.
+- All APKs use minSdk 21 and targetSdk 35. Supporting an Android API level does not establish firmware compatibility.
 - Other manufacturers, RC29 revisions, and firmware releases require separate testing. The model indicator is not a firmware certification.
 
 The ordinary user cannot usually write arbitrary system properties on standard Android. The direct route is specific to this firmware's permissions. See [Android's system-property access-control documentation](https://source.android.com/docs/core/architecture/configuration/add-system-properties).
@@ -103,10 +104,10 @@ This project was developed with assistance from OpenAI's Codex. Codex helped ins
 Use JDK 17 or newer and Android SDK 35. Open the source project in Android Studio, or run:
 
 ```text
-gradlew.bat :app:assembleStandardDebug :app:assembleStarterDebug
+gradlew.bat :app:assembleStandardDebug :app:assembleBootstrapDebug :app:assembleStarterDebug
 ```
 
-On macOS/Linux use `sh gradlew`. Output APKs are under `app/build/outputs/apk/standard/debug/` and `starter/debug/`. The first build needs internet access for Gradle and Android build tools if they are not already installed/cached.
+On macOS/Linux use `sh gradlew`. Output APKs are under the corresponding folders in `app/build/outputs/apk/`. The first build needs internet access for Gradle and Android build tools if they are not already installed/cached.
 
 Release builds use environment variables `RC29_SIGNING_STORE` and `RC29_SIGNING_PASSWORD`, alias `rc29-toolbox`. The distributed release APKs are signed and non-debuggable. Private signing keys and passwords are deliberately excluded from the source and release ZIPs. A build signed with your own key cannot update the supplied APK in place.
 
